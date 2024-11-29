@@ -1,20 +1,38 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
-SRCS =
-OBJS = $(SRCS:.c=.o)
-NAME = libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: thmgba <thmgba@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/28 11:57:41 by thmgba            #+#    #+#              #
+#    Updated: 2024/11/29 06:56:59 by thmgba           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-all: $(NAME)
+SRCS	= ft_print_arg.c ft_printf.c ft_putchar.c ft_strcpy.c ft_putnbr.c ft_putunbr.c ft_hex_digitsup.c ft_ntohexa.c ft_hex_digitslow.c ft_printmemory.c
+	   
+OBJS	= $(SRCS:.c=.o)
+
+CC		= cc
+
+CFLAGS	= -Wall -Wextra -Werror
+
+NAME 	= libftprintf.a
+
+all:	$(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+		ar rcs $(NAME) $(OBJS)
+
+%.o:	 %.c
+		$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJS)
+		rm -rf $(OBJS)
 
-fclean:
-	rm -rf $(OBJS)
-	rm -rf $(NAME)
+fclean:	clean
+		rm -rf $(NAME)
 
 re: fclean all
 
